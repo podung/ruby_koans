@@ -14,6 +14,8 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  a,b,c  = [a,b,c].sort
+  raise TriangleError if invalid?(a,b,c)
   return :equilateral if all_sides_equal?(a,b,c)
   return :isosceles if at_least_two_sides_equal?(a,b,c)
 
@@ -25,6 +27,10 @@ class TriangleError < StandardError
 end
 
 private
+def invalid?(a,b,c)
+  [a,b,c].min <= 0 || a + b <= c
+end
+
 def all_sides_equal?(a,b,c)
   a == b && b == c
 end
