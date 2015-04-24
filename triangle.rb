@@ -16,10 +16,12 @@
 def triangle(a, b, c)
   a,b,c  = [a,b,c].sort
   raise TriangleError if invalid?(a,b,c)
-  return :equilateral if all_sides_equal?(a,b,c)
-  return :isosceles if at_least_two_sides_equal?(a,b,c)
 
-  :scalene
+  case [a,b,c].uniq.size
+    when 3; :scalene
+    when 2; :isosceles
+    when 1; :equilateral
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
