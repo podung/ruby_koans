@@ -14,12 +14,21 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  return :equilateral if a == b && b == c
-  return :isosceles if a == b || b == c || a == c
+  return :equilateral if all_sides_equal?(a,b,c)
+  return :isosceles if at_least_two_sides_equal?(a,b,c)
 
   :scalene
 end
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
+end
+
+private
+def all_sides_equal?(a,b,c)
+  a == b && b == c
+end
+
+def at_least_two_sides_equal?(a,b,c)
+  a == b || b == c || a == c
 end
