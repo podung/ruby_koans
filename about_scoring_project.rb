@@ -39,7 +39,10 @@ def score(dice)
         score += 1000 if v == 3
         score += 100 * v unless v == 3
       when 5
-        score += 50 * v
+        score += 100 * k if v == 3
+        score += 50 * v unless v == 3
+      else
+        score += 100 * k if v == 3
     end
   end
 
