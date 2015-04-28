@@ -36,9 +36,9 @@ def score(dice)
   counts.each do |k,v|
     case k
       when 1
-        score += 100
+        score += 100 * v
       when 5
-        score += 50
+        score += 50 * v
     end
   end
 
