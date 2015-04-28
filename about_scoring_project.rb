@@ -36,7 +36,8 @@ def score(dice)
   counts.each do |k,v|
     case k
       when 1
-        score += 100 * v
+        score += 1000 if v == 3
+        score += 100 * v unless v == 3
       when 5
         score += 50 * v
     end
