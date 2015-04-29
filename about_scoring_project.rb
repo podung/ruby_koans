@@ -30,19 +30,28 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
+
   counts = dice.inject(Hash.new(0)) { |h,result| h.tap { |h| h[result] += 1 } }
 
   score = 0
   counts.each do |k,v|
     case k
       when 1
-        score += 1000 if v == 3
-        score += 100 * v unless v == 3
+        if v >= 3
+          score += 1000
+          v = v - 3
+        end
+        score += 100 * v
       when 5
-        score += 100 * k if v == 3
+        if v >= 3
+          score += 100 * k
+          v = v - 3
+        end
         score += 50 * v unless v == 3
       else
-        score += 100 * k if v == 3
+        if v >= 3
+          score += 100 * k
+        end
     end
   end
 
