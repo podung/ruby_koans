@@ -33,8 +33,10 @@ def score(dice)
   dice.sort!
   score = 0
 
+  rolls = DieRolls.new(dice)
+
   dice.uniq.each do |n|
-    if dice.count(n) >= 3
+    if rolls.triplet?(n)
       dice.slice!(dice.index(n), 3)
 
       score += triplet_score(n)
@@ -45,6 +47,18 @@ def score(dice)
   score += dice.count(5) * 50
 
   score
+end
+
+class DieRolls
+  attr_reader :dice
+
+  def initialize(dice)
+    @dice = dice
+  end
+
+  def triplet?(n)
+    dice.count(n) >= 3
+  end
 end
 
 def triplet_score(n)
