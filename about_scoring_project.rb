@@ -41,14 +41,8 @@ def score(dice)
     end
   end
 
-  triplets.each do |n|
-    if n == 1
-      score += 1000
-    else
-      score += 100 * n
-    end
-  end
-
+  score += 1000 if triplets.delete(1)
+  score += triplets.inject(0) { |sum, n| sum + n * 100 }
   score += dice.count(1) * 100
   score += dice.count(5) * 50
 
