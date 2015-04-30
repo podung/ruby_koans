@@ -37,11 +37,7 @@ def score(dice)
     if dice.count(n) >= 3
       dice.slice!(dice.index(n), 3)
 
-      if n == 1
-        score += 1000
-      else
-        score += n * 100
-      end
+      score += triplet_score(n)
     end
   end
 
@@ -49,6 +45,12 @@ def score(dice)
   score += dice.count(5) * 50
 
   score
+end
+
+def triplet_score(n)
+  return 1000 if n == 1
+
+  n * 100
 end
 
 class AboutScoringProject < Neo::Koan
