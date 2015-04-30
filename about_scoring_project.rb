@@ -31,18 +31,20 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   dice.sort!
-  triplets = []
   score = 0
 
   dice.uniq.each do |n|
     if dice.count(n) >= 3
       dice.slice!(dice.index(n), 3)
-      triplets << n
+
+      if n == 1
+        score += 1000
+      else
+        score += n * 100
+      end
     end
   end
 
-  score += 1000 if triplets.delete(1)
-  score += triplets.inject(0) { |sum, n| sum + n * 100 }
   score += dice.count(1) * 100
   score += dice.count(5) * 50
 
