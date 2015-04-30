@@ -31,17 +31,17 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   dice.sort!
-  three_instances = []
+  triplets = []
   score = 0
 
   (1..6).each do |n|
     if dice.count(n) >= 3
       dice.slice!(dice.index(n), 3)
-      three_instances << n
+      triplets << n
     end
   end
 
-  three_instances.each do |n|
+  triplets.each do |n|
     if n == 1
       score += 1000
     else
