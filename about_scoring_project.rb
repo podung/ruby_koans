@@ -36,10 +36,7 @@ def score(dice)
   rolls = DieRolls.new(dice)
 
   dice.uniq.each do |n|
-    if rolls.triplet?(n)
-      rolls.slice_triplet(n)
-      score += triplet_score(n)
-    end
+    rolls.slice_triplet(n) && score += triplet_score(n) if rolls.triplet(n)
   end
 
   score += dice.count(1) * 100
