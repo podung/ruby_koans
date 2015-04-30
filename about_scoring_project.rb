@@ -34,7 +34,7 @@ def score(dice)
   triplets = []
   score = 0
 
-  (1..6).each do |n|
+  dice.uniq.each do |n|
     if dice.count(n) >= 3
       dice.slice!(dice.index(n), 3)
       triplets << n
