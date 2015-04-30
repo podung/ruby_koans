@@ -37,8 +37,7 @@ def score(dice)
 
   dice.uniq.each do |n|
     if rolls.triplet?(n)
-      dice.slice!(dice.index(n), 3)
-
+      rolls.slice_triplet(n)
       score += triplet_score(n)
     end
   end
@@ -58,6 +57,10 @@ class DieRolls
 
   def triplet?(n)
     dice.count(n) >= 3
+  end
+
+  def slice_triplet(n)
+    dice.slice!(dice.index(n), 3)
   end
 end
 
