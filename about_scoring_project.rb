@@ -36,7 +36,7 @@ def score(dice)
   rolls = DieRolls.new(dice)
 
   dice.uniq.each do |n|
-    rolls.slice_triplet(n) && score += triplet_score(n) if rolls.triplet(n)
+    rolls.slice_triplet(n) && score += triplet_score(n) if rolls.triplet?(n)
 
     score += dice.count(n) * 100 if n == 1
     score += dice.count(n) * 50 if n == 5
