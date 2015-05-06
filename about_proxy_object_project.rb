@@ -26,6 +26,10 @@ class Proxy
     @messages.include? method
   end
 
+  def number_of_times_called(method)
+    @messages.count(method)
+  end
+
   def method_missing(method, *args)
     @messages << method
 
