@@ -16,9 +16,16 @@ class Proxy
   def initialize(target_object)
     @object = target_object
     # ADD MORE CODE HERE
+    @messages = []
+  end
+
+  def messages
+    @messages
   end
 
   def method_missing(method, *args)
+    @messages << method
+
     @object.send(method, *args)
   end
 end
